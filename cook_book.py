@@ -47,9 +47,9 @@ def get_shop_list_by_dishes(dishes, person_count, cook_book):
 
 
 shop_list = get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2, read_file("recipes.txt"))
-print(*shop_list.items(), sep = "\n")
-# print(shop_list)
+# print(*shop_list.items(), sep = "\n")
+print(shop_list)
 
 shop_list = get_shop_list_by_dishes(['Омлет', 'Утка по-пекински'], 4, read_file("recipes.txt"))
-print(*shop_list.items(), sep = "\n")
-# print(shop_list)
+# print(*shop_list.items(), sep = "\n")
+print(shop_list)

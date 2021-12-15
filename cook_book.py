@@ -34,22 +34,23 @@ def get_list_by_dishes(dishes, cook_book):
                 shop_list[shop_list.index(item)]['quantity'] = str(sum_products)               
     return shop_list 
     
-    
-
 def get_shop_list_by_dishes(dishes, person_count, cook_book):
-    shop_list_dishes = {}
+    shop_list_dishes = ""
     shop_list = get_list_by_dishes(dishes, cook_book)
+    shop_list_dishes += "{\n"
     for ingredient in shop_list:    
         volume_for_persons = int(ingredient['quantity']) * person_count
-        shop_list_dishes[ingredient['ingredient_name']] = {'measure': ingredient['measure'], 'quantity': str(volume_for_persons)}
+        shop_list_dishes += f" '{ingredient['ingredient_name']}': {{'mesure': '{ingredient['measure']}', 'quantity': {volume_for_persons}}} \n"
+    shop_list_dishes += "}"
     return shop_list_dishes
 
+def order_files(combine_text_str, file_name = 'menu.txt', path = os.getcwd()):
+    '''Записываем результирующую строку в файл'''
+    with open(file_name, 'w') as text:
+        return text.write(combine_text_str)
 
 
 shop_list = get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2, read_file("recipes.txt"))
-# print(*shop_list.items(), sep = "\n")
+# shop_list = get_shop_list_by_dishes(['Омлет', 'Утка по-пекински'], 4, read_file("recipes.txt"))
 print(shop_list)
-
-shop_list = get_shop_list_by_dishes(['Омлет', 'Утка по-пекински'], 4, read_file("recipes.txt"))
-# print(*shop_list.items(), sep = "\n")
-print(shop_list)
+order_files(shop_list)
